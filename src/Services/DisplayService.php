@@ -6,10 +6,16 @@ use App\Tool\TemperatureApi;
 
 class DisplayService
 {
+    public $api;
+
+    public function __construct()
+    {
+        $this->api = new TemperatureApi();
+    }
+
     public function getLEDStatus()
     {
-        $api = new TemperatureApi();
-        $temp = $api->getTemperature();
+        $temp = $this->api->getTemperature();
         if ($temp > 30) {
             return 'red';
         } else if ($temp > 20) {
